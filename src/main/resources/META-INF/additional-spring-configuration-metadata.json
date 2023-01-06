@@ -1,0 +1,22 @@
+{"properties": [
+  {
+    "name": "myproperty",
+    "type": "java.lang.String",
+    "description": "A description for 'myproperty'"
+  },
+  {
+    "name": "log4j.logger.org.hibernate.type",
+    "type": "java.lang.String",
+    "description": "A description for 'log4j.logger.org.hibernate.type'"
+  },
+  {
+    "name": "log4j.rootLogger",
+    "type": "java.lang.String",
+    "description": "A description for 'log4j.rootLogger'"
+  },
+  {
+    "name": "log4j.rootLogger",
+    "type": "java.lang.String",
+    "description": "A description for 'log4j.rootLogger'"
+  }
+]}
