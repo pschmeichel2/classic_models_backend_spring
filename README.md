@@ -42,8 +42,12 @@ This Webservice uses:
 * ...
 
 ## Pictures
+
+### Swagger GUI
 ![Swagger GUI](swagger.png)
 
+
+### MySQL Sample Database
 ![MySQL Sample Database](mysql-sample-database.png)
 
 
