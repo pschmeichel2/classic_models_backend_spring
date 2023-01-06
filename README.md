@@ -6,7 +6,13 @@ This is a simple Webservice Backend for the [MySQL Sample Database](https://www.
 It can be used by any webservice-enabled frontend. Also it has a built-in [Swagger](https://swagger.io/) GUI.
 
 ### Tooling
-This Webservice uses Java 17, Swing, Gradle, Lombok and Swagger.
+This Webservice uses:
+* [Java 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+* [Spring Boot](https://spring.io/projects/spring-boot)
+* [Gradle](https://gradle.org/)
+* [Lombok](https://projectlombok.org/) 
+* [Swagger](https://swagger.io/)
+* [MySQL](https://www.mysql.com/de/)
 
 ## How to install
 
@@ -31,8 +37,14 @@ This Webservice uses Java 17, Swing, Gradle, Lombok and Swagger.
 * Clean up code
 * Write Tests
 * Logging
+* Docker
+* Host it on Azure
 * ...
 
+## Pictures
+![Swagger GUI](swagger.png)
+
+![MySQL Sample Database](mysql-sample-database.png)
 
 
 
