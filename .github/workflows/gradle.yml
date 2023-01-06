@@ -34,5 +34,9 @@ jobs:
         arguments: build
     - uses: actions/upload-artifact@v3
       with:
-        name: Package
+        name: Libs
         path: build/libs
+    - uses: actions/upload-artifact@v3
+      with:
+        name: Database
+        path: src/db
