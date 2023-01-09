@@ -1,7 +1,7 @@
 # spring2
 
 ## What it is
-This is a simple Webservice Backend for the [MySQL Sample Database](https://www.mysqltutorial.org/mysql-sample-database.aspx).
+This is a simple Webservice Backend for the [MySQL Sample Database](https://www.mysqltutorial.org/mysql-sample-database.aspx) "classicmodels".
 
 It can be used by any webservice-enabled frontend. Also it has a built-in [Swagger](https://swagger.io/) GUI.
 
@@ -35,10 +35,15 @@ This Webservice uses:
 
 ## Todos
 * Clean up code
+* Eliminate duplicate code 
 * Write Tests
+* CRUD is only implemented for "office" table
+* Validation is only implemented for "office" table
 * Logging
 * Docker
 * Host it on Azure
+* Internalization of error messages
+
 * ...
 
 ## Pictures
