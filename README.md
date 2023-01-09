@@ -43,7 +43,6 @@ This Webservice uses:
 * Docker
 * Host it on Azure
 * Internalization of error messages
-
 * ...
 
 ## Pictures
