@@ -4,6 +4,7 @@
 This is a simple Webservice Backend for the [MySQL Sample Database](https://www.mysqltutorial.org/mysql-sample-database.aspx) "classicmodels".
 
 It can be used by any webservice-enabled frontend. Also it has a built-in [Swagger](https://swagger.io/) GUI.
+You can find my frontend at "classic_models_frontend_vue".
 
 ### Tooling
 This Webservice uses:
