@@ -4,6 +4,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 	id 'java'
 	id "io.freefair.lombok" version "6.5.1"
+	id "war"
 }
 
 group = 'com.example'
