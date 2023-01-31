@@ -1,4 +1,4 @@
-# spring2
+# classic_models_backend_spring
 
 ## What it is
 This is a simple Webservice Backend for the [MySQL Sample Database](https://www.mysqltutorial.org/mysql-sample-database.aspx) "classicmodels".
