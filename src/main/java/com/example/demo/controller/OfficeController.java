@@ -26,7 +26,7 @@ import com.example.demo.repository.OfficeRepository;
 
 
 
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = {"http://localhost:8081", "http://localhost:4200"})
 @RestController
 @RequestMapping("/api")
 public class OfficeController {
