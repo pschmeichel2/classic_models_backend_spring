@@ -44,4 +44,10 @@ public class Customer {
     @Getter @ReadOnlyProperty
     private String salesRepEmployeeName;
 
+    public static Customer from(String customerName) {
+        Customer customer = new Customer();
+        customer.customerName = customerName;
+        customer.salesRepEmployeeName = "";
+        return customer;
+    }
 }

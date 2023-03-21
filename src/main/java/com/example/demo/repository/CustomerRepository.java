@@ -5,11 +5,11 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-
+//import org.springframework.data.domain.*;
 import com.example.demo.model.Customer;
 
 
-public interface CustomerRepository extends JpaRepository<Customer, Long> {
+public interface CustomerRepository extends JpaRepository<Customer, Long>, CustomerRepositoryCustom {
     
     @Query("select new com.example.demo.model.Customer("+
     "c.customerNumber, "+
@@ -72,5 +72,8 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
         "order by c.customerNumber")  // this is JPQL so use classnames
     List<Customer> findAll();
 
+        // Google: jpa qbe join
+    
+    
 
 }
