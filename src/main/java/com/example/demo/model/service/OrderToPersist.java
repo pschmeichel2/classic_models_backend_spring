@@ -1,10 +1,8 @@
-package com.example.demo.model;
+package com.example.demo.model.service;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.*;
-
-import org.springframework.data.annotation.ReadOnlyProperty;
+import com.example.demo.model.Order;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,12 +10,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-@Entity
+/*
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "orders")
-public class Order {
-    @Id @Getter @Setter
+public class OrderToPersist {
+    @Getter @Setter
     private Long orderNumber; // int(11) NOT NULL,
     @Getter 
     private LocalDateTime orderDate; // date NOT NULL,
@@ -31,13 +28,9 @@ public class Order {
     private String comments; // text,
     @Getter 
     private Long customerNumber; // int(11) NOT NULL,
-    /*
-    @Getter 
-    @ManyToOne(fetch=FetchType.EAGER) 
-    @JoinColumn(name="customerNumber", referencedColumnName="customerNumber", insertable=false, updatable=false)
-    private Customer customer;
-     */
-    @Getter @ReadOnlyProperty
-    private String customerName;
 
+    public static OrderToPersist from(Order order) {
+        return null;
+    }
 }
+ */

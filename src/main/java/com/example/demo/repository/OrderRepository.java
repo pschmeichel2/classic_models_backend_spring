@@ -52,5 +52,9 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
         "left join Customer c on o.customerNumber = c.customerNumber " +    
         "order by o.orderNumber")  // this is JPQL so use classnames
     List<Order> findAll();
+
+    @Query("select max(convert(o.orderNumber, unsigned))+1 from Order o")  // this is JPQL so use classnames
+    int getNewOrderNumber();
+
 }
 

@@ -7,8 +7,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import com.example.demo.model.Product;
-import com.example.demo.model.ProductLineName;
-import com.example.demo.model.ProductVendor;
+import com.example.demo.model.query.ProductLineName;
+import com.example.demo.model.query.ProductVendor;
 
 public class ProductRepositoryCustomImpl implements ProductRepositoryCustom {
     
