@@ -5,6 +5,7 @@ import javax.persistence.*;
 import org.springframework.data.annotation.ReadOnlyProperty;
 
 import com.example.demo.model.keys.OrderDetailPK;
+import com.example.demo.model.updates.OrderDetailUpdate;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,13 +27,18 @@ public class OrderDetail {
     private Long quantityOrdered; // int(11) NOT NULL,
     @Getter 
     private Float priceEach; // decimal(10,2) NOT NULL,
-    @Getter 
+    @Getter @Setter
     private Long orderLineNumber; // smallint(6) NOT NULL,
 
-    @Getter @ReadOnlyProperty
-    private String productName; 
-    @Getter @ReadOnlyProperty
-    private String customerName; 
+    public static OrderDetail fromOrderDetailUpdate(OrderDetailUpdate orderDetailUpdate ) {
+        return new OrderDetail(
+            orderDetailUpdate.getOrderNumber(),
+            orderDetailUpdate.getProductCode(),
+            orderDetailUpdate.getQuantityOrdered(),
+            orderDetailUpdate.getPriceEach(),
+            orderDetailUpdate.getOrderLineNumber()
+        );
+    }
 
 }
 

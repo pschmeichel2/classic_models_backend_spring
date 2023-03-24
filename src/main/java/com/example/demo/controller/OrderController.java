@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.example.demo.model.Order;
+import com.example.demo.model.updates.OrderUpdate;
+import com.example.demo.model.query.OrderQuery;
 import com.example.demo.repository.OrderRepository;
+import com.example.demo.service.OrderService;
 
 
 
@@ -31,11 +34,13 @@ public class OrderController {
     @Autowired
     OrderRepository orderRepository;
 
+    @Autowired
+    OrderService orderService;
     
     @GetMapping("/orders")
-    public ResponseEntity<List<Order>> getAllOrders() {
-      List<Order> orders = new ArrayList<Order>();
-        orderRepository.findAll().forEach(orders::add);
+    public ResponseEntity<List<OrderQuery>> getAllOrders() {
+      List<OrderQuery> orders = new ArrayList<OrderQuery>();
+      orderRepository.findQueryAll().forEach(orders::add);
       if (orders.isEmpty()) {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
       }
@@ -45,29 +50,28 @@ public class OrderController {
 
     
     @GetMapping("/orders/{orderNumber}")
-    public ResponseEntity<Order> getOrderByOrderNumber(@PathVariable("orderNumber") long orderNumber) {
-      Order _order = orderRepository.findById(orderNumber)
+    public ResponseEntity<OrderQuery> getOrderByOrderNumber(@PathVariable("orderNumber") long orderNumber) {
+      OrderQuery _order = orderRepository.findQueryById(orderNumber)
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Order with id = " + orderNumber+ " not found"));
     
       return new ResponseEntity<>(_order, HttpStatus.OK );  
     }
 
     @GetMapping("/customers/{customerNumber}/orders")
-    public ResponseEntity<List<Order>> getOrdersByCustomerNumber(@PathVariable("customerNumber") long customerNumber) {    
-      List<Order> orders = new ArrayList<Order>();
-      orders = orderRepository.findByCustomerNumber(customerNumber);      
+    public ResponseEntity<List<OrderQuery>> getOrdersByCustomerNumber(@PathVariable("customerNumber") long customerNumber) {    
+      List<OrderQuery> orders = new ArrayList<OrderQuery>();
+      orders = orderRepository.findQueryByCustomerNumber(customerNumber);      
       if (orders.isEmpty()) {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
       }
 
       return new ResponseEntity<>(orders, HttpStatus.OK);
     }
-    /*
+    
     @PostMapping("/orders")
-    public ResponseEntity<OrderToPersist> createCustomer(@Valid @RequestBody OrderToPersist order) {   
-      int orderNumber = orderRepository.getNewOrderNumber();
-      order.setOrderNumber(Long.valueOf(orderNumber));
-      return new ResponseEntity<>(orderToPersistRepository.save(order), HttpStatus.OK ); 
+    public ResponseEntity<Order> createCustomer(@Valid @RequestBody OrderUpdate order) {   
+      Order newOrder = orderService.save(order);
+      return new ResponseEntity<>(newOrder, HttpStatus.OK );       
     }
- */
+ 
 }

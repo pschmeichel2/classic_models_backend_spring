@@ -6,6 +6,8 @@ import javax.persistence.*;
 
 import org.springframework.data.annotation.ReadOnlyProperty;
 
+import com.example.demo.model.updates.OrderUpdate;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,13 +33,18 @@ public class Order {
     private String comments; // text,
     @Getter 
     private Long customerNumber; // int(11) NOT NULL,
-    /*
-    @Getter 
-    @ManyToOne(fetch=FetchType.EAGER) 
-    @JoinColumn(name="customerNumber", referencedColumnName="customerNumber", insertable=false, updatable=false)
-    private Customer customer;
-     */
-    @Getter @ReadOnlyProperty
-    private String customerName;
+
+    public static Order fromOrderUpdate(OrderUpdate orderUpdate ) {
+        return new Order(
+            orderUpdate.getOrderNumber(),
+            orderUpdate.getOrderDate(),
+            orderUpdate.getRequiredDate(),
+            orderUpdate.getShippedDate(),
+            orderUpdate.getStatus(),
+            orderUpdate.getComments(),
+            orderUpdate.getCustomerNumber()
+        );
+
+    }
 
 }

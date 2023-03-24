@@ -126,7 +126,6 @@ public class ProductRepositoryCustomImpl implements ProductRepositoryCustom {
         List<Product> result = query.getResultList();
         
         return result;
-
     }
 
     static boolean isNullOrBlank(String s) {
