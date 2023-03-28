@@ -34,11 +34,14 @@ This Webservice uses:
 * Start the Webservice with "java -jar demo-0.0.1-SNAPSHOT.jar". It should show the "Spring"-Logo on startup.
 * The Swagger GUI is available at http://localhost:8080/swagger-ui/index.html.
 
+## News
+* Implemented first version of Order Entry
+
 ## Todos
 * Clean up code
 * Eliminate duplicate code 
 * Write Tests
-* CRUD is only implemented for "office" table
+* CRUD is only implemented for "office" table; also first version of Order and OrderDetail Entry
 * Validation is only implemented for "office" table
 * Logging
 * Docker
