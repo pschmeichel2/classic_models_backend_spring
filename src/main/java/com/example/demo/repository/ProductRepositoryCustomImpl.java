@@ -7,8 +7,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import com.example.demo.model.Product;
-import com.example.demo.model.query.ProductLineName;
-import com.example.demo.model.query.ProductVendor;
+import com.example.demo.model.query.ProductLineNameQuery;
+import com.example.demo.model.query.ProductVendorQuery;
 
 public class ProductRepositoryCustomImpl implements ProductRepositoryCustom {
     
@@ -23,13 +23,13 @@ public class ProductRepositoryCustomImpl implements ProductRepositoryCustom {
             order by 1                    
             """;
 
-        Query query = entityManager.createNativeQuery(sql, ProductLineName.class);
+        Query query = entityManager.createNativeQuery(sql, ProductLineNameQuery.class);
 
         @SuppressWarnings("unchecked")
-        List<ProductLineName> productLineNames = query.getResultList();
+        List<ProductLineNameQuery> productLineNames = query.getResultList();
         
         List<String> result = new ArrayList<String>();
-        for(ProductLineName productLineName: productLineNames) {
+        for(ProductLineNameQuery productLineName: productLineNames) {
             result.add(productLineName.getProductLineName());
         }
         return result;
@@ -43,13 +43,13 @@ public class ProductRepositoryCustomImpl implements ProductRepositoryCustom {
             order by 1                    
             """;
 
-        Query query = entityManager.createNativeQuery(sql, ProductVendor.class);
+        Query query = entityManager.createNativeQuery(sql, ProductVendorQuery.class);
 
         @SuppressWarnings("unchecked")
-        List<ProductVendor> productVendors = query.getResultList();
+        List<ProductVendorQuery> productVendors = query.getResultList();
         
         List<String> result = new ArrayList<String>();
-        for(ProductVendor productVendor: productVendors) {
+        for(ProductVendorQuery productVendor: productVendors) {
             result.add(productVendor.getProductVendor());
         }
         return result;

@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductLineName {
+public class ProductLineNameQuery {
     @Id @Getter 
     private String productLineName; // int(11) NOT NULL,
 

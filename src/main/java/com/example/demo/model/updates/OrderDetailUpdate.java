@@ -29,7 +29,9 @@ public class OrderDetailUpdate {
     @Getter 
     private Long orderLineNumber; // smallint(6) NOT NULL,
 
-
+    public OrderDetailPK getPk() {
+        return new OrderDetailPK(orderNumber, productCode);
+    }
 }
 
 

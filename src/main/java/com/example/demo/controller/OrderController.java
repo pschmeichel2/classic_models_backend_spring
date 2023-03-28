@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -70,8 +71,16 @@ public class OrderController {
     
     @PostMapping("/orders")
     public ResponseEntity<Order> createCustomer(@Valid @RequestBody OrderUpdate order) {   
-      Order newOrder = orderService.save(order);
+      Order newOrder = orderService.insert(order);
       return new ResponseEntity<>(newOrder, HttpStatus.OK );       
     }
  
+    @PutMapping("/orders/{orderNumber}")
+    public ResponseEntity<Order> updateOrder(
+      @PathVariable("orderNumber") long orderNumber,
+      @Valid @RequestBody OrderUpdate order) {
+        Order newOrder = orderService.update(order);
+        return new ResponseEntity<>(newOrder, HttpStatus.OK );       
+      }
+
 }

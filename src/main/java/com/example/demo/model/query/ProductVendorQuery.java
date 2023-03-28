@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductVendor {
+public class ProductVendorQuery {
     @Id @Getter 
     private String productVendor; // int(11) NOT NULL,
 
