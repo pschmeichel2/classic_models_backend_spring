@@ -48,8 +48,8 @@ public class OrderDetailController {
       @PathVariable("productCode") String productCode) {
       
         OrderDetailQuery orderDetail = orderDetailRepository.findQueryByOrderNumberAndProductCode(orderNumber, productCode)
-        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, 
-        "OrderDetail with id = " + orderNumber + "/" + productCode + " not found"));
+          .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, 
+          "OrderDetail with id = " + orderNumber + "/" + productCode + " not found"));
     
       return new ResponseEntity<>(orderDetail, HttpStatus.OK );  
     }

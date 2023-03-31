@@ -77,7 +77,7 @@ public class OfficeController {
       office.setOfficeCode(Integer.toString(officeCode));
       return new ResponseEntity<>(officeRepository.save(office), HttpStatus.OK ); 
     }
-
+/*
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
     public class ResourceNotFoundException extends RuntimeException {
       public ResourceNotFoundException(String message)   
@@ -85,7 +85,7 @@ public class OfficeController {
         super(message);  
       }  
     }
-    
+   */  
     @DeleteMapping("/offices/{officeCode}")
     public ResponseEntity<HttpStatus> deleteCustomer(@PathVariable("officeCode") String officeCode) {
       try {

@@ -58,4 +58,9 @@ public class OrderService {
         orderRepository.deleteById(orderUpdate.getOrderNumber());        
     }
 
+    @Transactional
+    public void deleteOrder(long orderNumber) {    
+        orderDetailRepository.deleteByOrderNumber(orderNumber);
+        orderRepository.deleteById(orderNumber);
+    }
 }

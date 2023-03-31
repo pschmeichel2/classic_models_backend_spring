@@ -8,7 +8,9 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +23,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.example.demo.model.Order;
 import com.example.demo.model.updates.OrderUpdate;
 import com.example.demo.model.query.OrderQuery;
+import com.example.demo.repository.OrderDetailRepository;
 import com.example.demo.repository.OrderRepository;
 import com.example.demo.service.OrderService;
 
@@ -77,10 +80,20 @@ public class OrderController {
  
     @PutMapping("/orders/{orderNumber}")
     public ResponseEntity<Order> updateOrder(
-      @PathVariable("orderNumber") long orderNumber,
-      @Valid @RequestBody OrderUpdate order) {
-        Order newOrder = orderService.update(order);
-        return new ResponseEntity<>(newOrder, HttpStatus.OK );       
-      }
+        @PathVariable("orderNumber") long orderNumber,
+        @Valid @RequestBody OrderUpdate order) {
+      Order newOrder = orderService.update(order);
+      return new ResponseEntity<>(newOrder, HttpStatus.OK );       
+    }
 
+      @DeleteMapping("/orders/{orderNumber}")
+      public ResponseEntity<HttpStatus> deleteOrder(@PathVariable("orderNumber") long orderNumber) {
+        try {
+          orderService.deleteOrder(orderNumber);
+        } catch (EmptyResultDataAccessException ex) {
+            throw new ResourceNotFoundException(String.format("Order with orderNumber %d not found", orderNumber));
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+      }
+  
 }
