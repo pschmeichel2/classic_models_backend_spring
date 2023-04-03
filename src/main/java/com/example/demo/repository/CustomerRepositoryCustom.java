@@ -8,5 +8,6 @@ public interface CustomerRepositoryCustom {
         String customerName, String contactLastName, 
         String contactFirstName, String country);
 
-    List<String> getCountries();        
+    List<String> getCountries();
+            
 }

@@ -22,6 +22,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.example.demo.model.Order;
 import com.example.demo.model.updates.OrderUpdate;
+import com.example.demo.model.query.CustomerOrderQuery;
 import com.example.demo.model.query.OrderQuery;
 import com.example.demo.repository.OrderDetailRepository;
 import com.example.demo.repository.OrderRepository;
@@ -71,6 +72,18 @@ public class OrderController {
 
       return new ResponseEntity<>(orders, HttpStatus.OK);
     }
+
+    @GetMapping("/customers/{customerNumber}/ordertotals")
+    public ResponseEntity<List<CustomerOrderQuery>> getOrderTotalsByCustomerNumber(@PathVariable("customerNumber") long customerNumber) {    
+      List<CustomerOrderQuery> orders = new ArrayList<CustomerOrderQuery>();
+      orders = orderRepository.findOrderTotalsByCustomerNumber(customerNumber);      
+      if (orders.isEmpty()) {
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+      }
+
+      return new ResponseEntity<>(orders, HttpStatus.OK);
+    }
+    
     
     @PostMapping("/orders")
     public ResponseEntity<Order> createCustomer(@Valid @RequestBody OrderUpdate order) {   
