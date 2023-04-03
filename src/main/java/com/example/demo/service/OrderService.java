@@ -31,8 +31,9 @@ public class OrderService {
     @Transactional
     public Order update(OrderUpdate orderUpdate) {
         System.out.println("update");
-        deleteOrder(orderUpdate);
-        return insertOrder(orderUpdate, orderUpdate.getOrderNumber());
+        deleteOrder(orderUpdate.getOrderNumber());
+        Order retOrder = insertOrder(orderUpdate, orderUpdate.getOrderNumber());
+        return retOrder;
     }
 
     private Order insertOrder(OrderUpdate orderUpdate, long orderNumber) {        
