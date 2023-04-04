@@ -129,7 +129,8 @@ public class CustomerRepositoryCustomImpl implements CustomerRepositoryCustom {
                         o.status,
                         coalesce((select sum(quantityOrdered * priceEach)
                             from orderdetails od
-                            where od.ordernumber = o.orderNumber),0) * -1 as amount
+                            where od.ordernumber = o.orderNumber),0) * -1 as amount,
+                            0 as balance
                     from Orders o
                     where o.customerNumber = :customerNumber
                     union
@@ -137,7 +138,8 @@ public class CustomerRepositoryCustomImpl implements CustomerRepositoryCustom {
                         concat('Payment ', customerNumber, '/',checkNumber) as id,
                         paymentDate as transactionDate,
                         'Payment' as status,
-                        amount
+                        amount,
+                        0 as balance
                     from payments p
                     where p.customerNumber = :customerNumber
                     )
@@ -148,9 +150,19 @@ public class CustomerRepositoryCustomImpl implements CustomerRepositoryCustom {
         query.setParameter("customerNumber", customerNumber);
 
         @SuppressWarnings("unchecked")
-        List<CustomerBalanceLineQuery> result = query.getResultList();
+        List<CustomerBalanceLineQuery> balanceLines = query.getResultList();
 
-        return result;
+        Float balance = 0.0f;
+        for (CustomerBalanceLineQuery balanceLine : balanceLines) {
+            String status = balanceLine.getStatus();
+            if( !status.equals("On Hold") && !status.equals("In Process")) {
+                balance += balanceLine.getAmount();
+            }
+            balanceLine.setBalance(balance);
+            
+        }
+    
+        return balanceLines;
     }
 
     static boolean isNullOrBlank(String s) {

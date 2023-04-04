@@ -26,4 +26,8 @@ public class CustomerBalanceLineQuery {
     private String status; 
     @Getter
     private Float amount; 
+    @Getter
+    @Setter
+    private Float balance; 
 }
+
