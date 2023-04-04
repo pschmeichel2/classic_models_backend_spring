@@ -36,31 +36,31 @@ public class OrderService {
         return retOrder;
     }
 
-    private Order insertOrder(OrderUpdate orderUpdate, long orderNumber) {        
-        Order order = Order.fromOrderUpdate(orderUpdate);        
+    private Order insertOrder(OrderUpdate orderUpdate, long orderNumber) {
+        Order order = Order.fromOrderUpdate(orderUpdate);
         order.setOrderNumber(Long.valueOf(orderNumber));
         Order newOrder = orderRepository.save(order);
         long orderLineNumber = 1;
-        for( OrderDetailUpdate orderDetailUpdate: orderUpdate.getOrderDetails()) {
+        for (OrderDetailUpdate orderDetailUpdate : orderUpdate.getOrderDetails()) {
             OrderDetail orderDetail = OrderDetail.fromOrderDetailUpdate(orderDetailUpdate);
             orderDetail.setOrderNumber(order.getOrderNumber());
             orderDetail.setOrderLineNumber(orderLineNumber);
-            OrderDetail newOrderDetail = orderDetailRepository.save(orderDetail);            
+            OrderDetail newOrderDetail = orderDetailRepository.save(orderDetail);
             orderLineNumber++;
         }
         return newOrder;
     }
 
-    private void deleteOrder(OrderUpdate orderUpdate) {    
-        for( OrderDetailUpdate orderDetailUpdate: orderUpdate.getOrderDetails()) {
+    private void deleteOrder(OrderUpdate orderUpdate) {
+        for (OrderDetailUpdate orderDetailUpdate : orderUpdate.getOrderDetails()) {
             OrderDetailPK pkToDelete = orderDetailUpdate.getPk();
             orderDetailRepository.deleteById(pkToDelete);
         }
-        orderRepository.deleteById(orderUpdate.getOrderNumber());        
+        orderRepository.deleteById(orderUpdate.getOrderNumber());
     }
 
     @Transactional
-    public void deleteOrder(long orderNumber) {    
+    public void deleteOrder(long orderNumber) {
         orderDetailRepository.deleteByOrderNumber(orderNumber);
         orderRepository.deleteById(orderNumber);
     }

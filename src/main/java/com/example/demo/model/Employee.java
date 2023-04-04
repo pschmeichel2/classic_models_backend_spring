@@ -8,32 +8,34 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "employees")
 public class Employee {
-    @Id @Getter 
+    @Id
+    @Getter
     private Long employeeNumber; // int(11) NOT NULL,
-    @Getter 
+    @Getter
     private String lastName; // varchar(50) NOT NULL,
-    @Getter 
+    @Getter
     private String firstName; // varchar(50) NOT NULL,
-    @Getter 
+    @Getter
     private String extension; // varchar(10) NOT NULL,
-    @Getter 
+    @Getter
     private String email; // varchar(100) NOT NULL,
-    @Getter 
+    @Getter
     private String officeCode; // varchar(10) NOT NULL,
-    @Getter 
+    @Getter
     private Long reportsTo; // int(11) DEFAULT NULL,
-    @Getter 
+    @Getter
     private String jobTitle; // varchar(50) NOT NULL,
 
-    @Getter @ReadOnlyProperty
+    @Getter
+    @ReadOnlyProperty
     private String city;
-    @Getter @ReadOnlyProperty
+    @Getter
+    @ReadOnlyProperty
     private String reportsToName;
 
 }

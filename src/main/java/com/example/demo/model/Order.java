@@ -13,37 +13,37 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "orders")
 public class Order {
-    @Id @Getter @Setter
+    @Id
+    @Getter
+    @Setter
     private Long orderNumber; // int(11) NOT NULL,
-    @Getter 
+    @Getter
     private LocalDateTime orderDate; // date NOT NULL,
-    @Getter 
+    @Getter
     private LocalDateTime requiredDate; // date NOT NULL,
-    @Getter 
+    @Getter
     private LocalDateTime shippedDate; // date DEFAULT NULL,
-    @Getter 
+    @Getter
     private String status; // varchar(15) NOT NULL,
-    @Getter 
+    @Getter
     private String comments; // text,
-    @Getter 
+    @Getter
     private Long customerNumber; // int(11) NOT NULL,
 
-    public static Order fromOrderUpdate(OrderUpdate orderUpdate ) {
+    public static Order fromOrderUpdate(OrderUpdate orderUpdate) {
         return new Order(
-            orderUpdate.getOrderNumber(),
-            orderUpdate.getOrderDate(),
-            orderUpdate.getRequiredDate(),
-            orderUpdate.getShippedDate(),
-            orderUpdate.getStatus(),
-            orderUpdate.getComments(),
-            orderUpdate.getCustomerNumber()
-        );
+                orderUpdate.getOrderNumber(),
+                orderUpdate.getOrderDate(),
+                orderUpdate.getRequiredDate(),
+                orderUpdate.getShippedDate(),
+                orderUpdate.getStatus(),
+                orderUpdate.getComments(),
+                orderUpdate.getCustomerNumber());
 
     }
 

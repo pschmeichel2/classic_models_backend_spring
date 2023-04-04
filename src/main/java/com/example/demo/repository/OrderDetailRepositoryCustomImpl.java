@@ -14,26 +14,26 @@ public class OrderDetailRepositoryCustomImpl implements OrderDetailRepositoryCus
     private EntityManager entityManager;
 
     static final String baseSelect = """
-        select 
-            d.orderNumber, 
-            d.productCode, 
-            d.quantityOrdered, 
-            d.priceEach, 
-            d.orderLineNumber, 
-            p.productName, 
-            c.customerName
-        from OrderDetails d 
-        left join Products p on d.productCode = p.productCode 
-        left join Orders o on d.orderNumber = o.orderNumber 
-        left join Customers c on c.customerNumber = o.customerNumber 
-        """;
+            select
+                d.orderNumber,
+                d.productCode,
+                d.quantityOrdered,
+                d.priceEach,
+                d.orderLineNumber,
+                p.productName,
+                c.customerName
+            from OrderDetails d
+            left join Products p on d.productCode = p.productCode
+            left join Orders o on d.orderNumber = o.orderNumber
+            left join Customers c on c.customerNumber = o.customerNumber
+            """;
 
-    @Override    
+    @Override
     public List<OrderDetailQuery> findQueryByProductCode(String productCode) {
         String sql = baseSelect + """
-            where d.productCode = :productCode
-            order by d.orderNumber, d.orderLineNumber
-            """;
+                where d.productCode = :productCode
+                order by d.orderNumber, d.orderLineNumber
+                """;
 
         Query query = entityManager.createNativeQuery(sql, OrderDetailQuery.class);
         query.setParameter("productCode", productCode);
@@ -43,12 +43,12 @@ public class OrderDetailRepositoryCustomImpl implements OrderDetailRepositoryCus
         return orderDetails;
     };
 
-    @Override    
+    @Override
     public List<OrderDetailQuery> findQueryByOrderNumber(Long orderNumber) {
         String sql = baseSelect + """
-            where d.orderNumber = :orderNumber 
-            order by d.orderNumber, d.orderLineNumber
-            """;
+                where d.orderNumber = :orderNumber
+                order by d.orderNumber, d.orderLineNumber
+                """;
 
         Query query = entityManager.createNativeQuery(sql, OrderDetailQuery.class);
         query.setParameter("orderNumber", orderNumber);
@@ -58,11 +58,11 @@ public class OrderDetailRepositoryCustomImpl implements OrderDetailRepositoryCus
         return orderDetails;
     };
 
-    @Override    
+    @Override
     public List<OrderDetailQuery> findQueryAll() {
         String sql = baseSelect + """
-            order by d.orderNumber, d.orderLineNumber
-            """;
+                order by d.orderNumber, d.orderLineNumber
+                """;
 
         Query query = entityManager.createNativeQuery(sql, OrderDetailQuery.class);
 
@@ -71,11 +71,11 @@ public class OrderDetailRepositoryCustomImpl implements OrderDetailRepositoryCus
         return orderDetails;
     };
 
-    @Override    
+    @Override
     public Optional<OrderDetailQuery> findQueryByOrderNumberAndProductCode(Long orderNumber, String productCode) {
         String sql = baseSelect + """
-            where d.orderNumber = :orderNumber and d.productCode = :productCode
-            """;
+                where d.orderNumber = :orderNumber and d.productCode = :productCode
+                """;
 
         Query query = entityManager.createNativeQuery(sql, OrderDetailQuery.class);
         query.setParameter("orderNumber", orderNumber);
@@ -85,11 +85,10 @@ public class OrderDetailRepositoryCustomImpl implements OrderDetailRepositoryCus
         List<OrderDetailQuery> orderDetails = query.getResultList();
 
         Optional<OrderDetailQuery> result = Optional.empty();
-        if( orderDetails.size() > 0) {
+        if (orderDetails.size() > 0) {
             result = Optional.of(orderDetails.get(0));
         }
         return result;
     };
 
 }
-

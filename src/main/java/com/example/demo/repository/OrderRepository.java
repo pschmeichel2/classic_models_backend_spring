@@ -9,9 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import com.example.demo.model.Order;
 
 public interface OrderRepository extends JpaRepository<Order, Long>, OrderRepositoryCustom {
-    
-    @Query("select max(convert(o.orderNumber, unsigned))+1 from Order o")  // this is JPQL so use classnames
+
+    @Query("select max(convert(o.orderNumber, unsigned))+1 from Order o") // this is JPQL so use classnames
     int getNewOrderNumber();
-
 }
-

@@ -11,32 +11,37 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 public class CustomerOrderQuery {
-    @Id @Getter @Setter
+    @Id
+    @Getter
+    @Setter
     private Long orderNumber; // int(11) NOT NULL,
-    @Getter 
+    @Getter
     private LocalDateTime orderDate; // date NOT NULL,
-    @Getter 
+    @Getter
     private LocalDateTime requiredDate; // date NOT NULL,
-    @Getter 
+    @Getter
     private LocalDateTime shippedDate; // date DEFAULT NULL,
-    @Getter 
+    @Getter
     private String status; // varchar(15) NOT NULL,
-    @Getter 
+    @Getter
     private String comments; // text,
-    @Getter 
+    @Getter
     private Long customerNumber; // int(11) NOT NULL,
 
-    @Getter @ReadOnlyProperty
-    private String customerName; 
-    @Getter @ReadOnlyProperty
+    @Getter
+    @ReadOnlyProperty
+    private String customerName;
+    @Getter
+    @ReadOnlyProperty
     private float totalOrderPrice;
-    @Getter @ReadOnlyProperty
+    @Getter
+    @ReadOnlyProperty
     private float recommendedOrderPrice;
-    @Getter @ReadOnlyProperty
+    @Getter
+    @ReadOnlyProperty
     private float buyPrice;
 }

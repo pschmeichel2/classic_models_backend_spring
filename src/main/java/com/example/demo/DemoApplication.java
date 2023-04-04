@@ -12,11 +12,11 @@ import java.io.IOException;
 import java.net.DatagramSocket;
 import java.net.ServerSocket;
 
-
 @SpringBootApplication
 public class DemoApplication {
 
-	//private static final Logger log = LoggerFactory.getLogger(DemoApplication.class);
+	// private static final Logger log =
+	// LoggerFactory.getLogger(DemoApplication.class);
 
 	public static void main(String[] args) {
 		if (!available(8080)) {

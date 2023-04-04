@@ -11,33 +11,38 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 
 public class OrderQuery {
-    @Id @Getter @Setter
+    @Id
+    @Getter
+    @Setter
     private Long orderNumber; // int(11) NOT NULL,
-    @Getter 
+    @Getter
     private LocalDateTime orderDate; // date NOT NULL,
-    @Getter 
+    @Getter
     private LocalDateTime requiredDate; // date NOT NULL,
-    @Getter 
+    @Getter
     private LocalDateTime shippedDate; // date DEFAULT NULL,
-    @Getter 
+    @Getter
     private String status; // varchar(15) NOT NULL,
-    @Getter 
+    @Getter
     private String comments; // text,
-    @Getter 
+    @Getter
     private Long customerNumber; // int(11) NOT NULL,
     /*
-    @Getter 
-    @ManyToOne(fetch=FetchType.EAGER) 
-    @JoinColumn(name="customerNumber", referencedColumnName="customerNumber", insertable=false, updatable=false)
-    private Customer customer;
+     * @Getter
+     * 
+     * @ManyToOne(fetch=FetchType.EAGER)
+     * 
+     * @JoinColumn(name="customerNumber", referencedColumnName="customerNumber",
+     * insertable=false, updatable=false)
+     * private Customer customer;
      */
-    @Getter @ReadOnlyProperty
+    @Getter
+    @ReadOnlyProperty
     private String customerName;
 
 }

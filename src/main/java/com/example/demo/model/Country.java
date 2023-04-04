@@ -10,7 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Country {
-    @Id @Getter 
+    @Id
+    @Getter
     private String country; // int(11) NOT NULL,
 
 }

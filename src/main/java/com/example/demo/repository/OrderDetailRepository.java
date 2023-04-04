@@ -10,8 +10,8 @@ import com.example.demo.model.keys.OrderDetailPK;
 import com.example.demo.model.OrderDetail;
 
 public interface OrderDetailRepository extends JpaRepository<OrderDetail, OrderDetailPK>, OrderDetailRepositoryCustom {
-    
+
     List<OrderDetail> findByOrderNumber(long orderNumber);
+
     void deleteByOrderNumber(long orderNumber);
 }
-

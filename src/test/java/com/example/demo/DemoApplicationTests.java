@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.springframework.boot.test.autoconfigure.web.servlet.*;
 
-@SpringBootTest 
+@SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
 class DemoApplicationTests {

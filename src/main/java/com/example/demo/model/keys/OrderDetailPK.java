@@ -7,10 +7,12 @@ import lombok.Setter;
 
 @NoArgsConstructor
 public class OrderDetailPK implements Serializable {
-    @Getter @Setter
-    protected  Long orderNumber;
-    @Getter @Setter
-    protected  String productCode;
+    @Getter
+    @Setter
+    protected Long orderNumber;
+    @Getter
+    @Setter
+    protected String productCode;
 
     public OrderDetailPK(Long orderNumber, String productCode) {
         this.orderNumber = orderNumber;

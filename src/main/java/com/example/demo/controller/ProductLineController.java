@@ -15,32 +15,33 @@ import org.springframework.web.server.ResponseStatusException;
 import com.example.demo.model.ProductLine;
 import com.example.demo.repository.ProductLineRepository;
 
-@CrossOrigin(origins = {"http://localhost:8081", "http://localhost:4200"})
+@CrossOrigin(origins = { "http://localhost:8081", "http://localhost:4200" })
 @RestController
 @RequestMapping("/api")
 public class ProductLineController {
-    
-    @Autowired
-    ProductLineRepository productLineRepository;
-    
-    @GetMapping("/productLines")
-    public ResponseEntity<List<ProductLine>> getAllProductLines() {
-      List<ProductLine> productLines = new ArrayList<ProductLine>();
-        productLineRepository.findAll().forEach(productLines::add);
-      if (productLines.isEmpty()) {
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-      }
-  
-      return new ResponseEntity<>(productLines, HttpStatus.OK);
+
+  @Autowired
+  ProductLineRepository productLineRepository;
+
+  @GetMapping("/productLines")
+  public ResponseEntity<List<ProductLine>> getAllProductLines() {
+    List<ProductLine> productLines = new ArrayList<ProductLine>();
+    productLineRepository.findAll().forEach(productLines::add);
+    if (productLines.isEmpty()) {
+      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    
-    @GetMapping("/productLines/{productLine}")
-    public ResponseEntity<ProductLine> getProductLineByProductLineNumber(@PathVariable("productLine") String productLine) {
-      ProductLine _productLine = productLineRepository.findById(productLine)
-        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "ProductLine with id = " + productLine+ " not found"));
-    
-      return new ResponseEntity<>(_productLine, HttpStatus.OK );  
-    }
+    return new ResponseEntity<>(productLines, HttpStatus.OK);
+  }
+
+  @GetMapping("/productLines/{productLine}")
+  public ResponseEntity<ProductLine> getProductLineByProductLineNumber(
+      @PathVariable("productLine") String productLine) {
+    ProductLine _productLine = productLineRepository.findById(productLine)
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+            "ProductLine with id = " + productLine + " not found"));
+
+    return new ResponseEntity<>(_productLine, HttpStatus.OK);
+  }
 
 }

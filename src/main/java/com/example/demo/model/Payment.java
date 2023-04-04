@@ -8,19 +8,19 @@ import com.example.demo.model.keys.PaymentPK;
 
 import lombok.Getter;
 
-
 @Entity
 @IdClass(PaymentPK.class)
 @Table(name = "payments")
 public class Payment {
-    @Id @Getter 
+    @Id
+    @Getter
     private Long customerNumber; // int(11) NOT NULL,
-    @Id @Getter 
+    @Id
+    @Getter
     private String checkNumber; // varchar(50) NOT NULL,
-    @Getter 
+    @Getter
     private LocalDateTime paymentDate; // date NOT NULL,
-    @Getter 
+    @Getter
     private Float amount; // decimal(10,2) NOT NULL,
-
 
 }

@@ -13,36 +13,37 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import com.example.demo.model.Customer;
+import com.example.demo.model.query.CustomerBalanceLineQuery;
 import com.example.demo.repository.CustomerRepository;
 
-@CrossOrigin(origins = {"http://localhost:8081", "http://localhost:4200"})
+@CrossOrigin(origins = { "http://localhost:8081", "http://localhost:4200" })
 @RestController
 @RequestMapping("/api")
 public class CustomerController {
 
   @Autowired
   CustomerRepository customerRepository;
-  
+
   @GetMapping("/customers")
   public ResponseEntity<List<Customer>> getAllCustomers(
-    @RequestParam(required = false) String customerName, 
-    @RequestParam(required = false) String contactLastName,
-    @RequestParam(required = false) String contactFirstName,
-    @RequestParam(required = false) String country) {
+      @RequestParam(required = false) String customerName,
+      @RequestParam(required = false) String contactLastName,
+      @RequestParam(required = false) String contactFirstName,
+      @RequestParam(required = false) String country) {
 
     List<Customer> customers = new ArrayList<Customer>();
 
-    if( !isNullOrBlank(customerName) ||
-      !isNullOrBlank(contactLastName)||
-      !isNullOrBlank(contactFirstName)||
-      !isNullOrBlank(country)) {
-        customerRepository.getCustomers(customerName, contactLastName, contactFirstName, country).forEach(customers::add);    
-      } else {
+    if (!isNullOrBlank(customerName) ||
+        !isNullOrBlank(contactLastName) ||
+        !isNullOrBlank(contactFirstName) ||
+        !isNullOrBlank(country)) {
+      customerRepository.getCustomers(customerName, contactLastName, contactFirstName, country).forEach(customers::add);
+    } else {
       customerRepository.findAll().forEach(customers::add);
     }
     if (customers.isEmpty()) {
       return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }  
+    }
     return new ResponseEntity<>(customers, HttpStatus.OK);
   }
 
@@ -54,22 +55,37 @@ public class CustomerController {
 
     if (countries.isEmpty()) {
       return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }  
+    }
     return new ResponseEntity<List<String>>(countries, HttpStatus.OK);
   }
 
   @GetMapping("/customers/{customerNumber}")
   public ResponseEntity<Customer> getCustomerByCustomerNumber(@PathVariable("customerNumber") long customerNumber) {
     Customer _customer = customerRepository.findById(customerNumber)
-      .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer with id = " + customerNumber+ " not found"));
-  
-    return new ResponseEntity<>(_customer, HttpStatus.OK );  
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+            "Customer with id = " + customerNumber + " not found"));
+
+    return new ResponseEntity<>(_customer, HttpStatus.OK);
+  }
+
+  @GetMapping("/customers/{customerNumber}/balance")
+  public ResponseEntity<List<CustomerBalanceLineQuery>> getCustomerBalanceByCustomerNumber(
+      @PathVariable("customerNumber") long customerNumber) {
+
+    List<CustomerBalanceLineQuery> _balanceLines = customerRepository.getCustomerBalanceLines(customerNumber);
+
+    if (_balanceLines.isEmpty()) {
+      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+        
+    return new ResponseEntity<List<CustomerBalanceLineQuery>>(_balanceLines, HttpStatus.OK);
   }
 
   @GetMapping("/employees/{employeeNumber}/customers")
-  public ResponseEntity<List<Customer>> getCustomersByEmployeeNumber(@PathVariable("employeeNumber") long employeeNumber) {    
+  public ResponseEntity<List<Customer>> getCustomersByEmployeeNumber(
+      @PathVariable("employeeNumber") long employeeNumber) {
     List<Customer> customers = new ArrayList<Customer>();
-    customers = customerRepository.findBySalesRepEmployeeNumber(employeeNumber);      
+    customers = customerRepository.findBySalesRepEmployeeNumber(employeeNumber);
     if (customers.isEmpty()) {
       return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
@@ -78,7 +94,7 @@ public class CustomerController {
   }
 
   static boolean isNullOrBlank(String s) {
-    return (s==null || s.isBlank());
+    return (s == null || s.isBlank());
   }
 
 }

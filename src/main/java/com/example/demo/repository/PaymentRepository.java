@@ -7,6 +7,6 @@ import com.example.demo.model.Payment;
 import com.example.demo.model.keys.PaymentPK;
 
 public interface PaymentRepository extends JpaRepository<Payment, PaymentPK> {
-    
+
     List<Payment> findByCustomerNumber(Long customerNumber);
 }

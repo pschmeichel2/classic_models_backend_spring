@@ -15,54 +15,54 @@ import org.springframework.web.server.ResponseStatusException;
 import com.example.demo.model.Employee;
 import com.example.demo.repository.EmployeeRepository;
 
-@CrossOrigin(origins = {"http://localhost:8081", "http://localhost:4200"})
+@CrossOrigin(origins = { "http://localhost:8081", "http://localhost:4200" })
 @RestController
 @RequestMapping("/api")
 public class EmployeeController {
 
-    @Autowired
-    EmployeeRepository employeeRepository;
-    
-    @GetMapping("/employees")
-    public ResponseEntity<List<Employee>> getAllEmployees() {
-      List<Employee> employees = new ArrayList<Employee>();
-        employeeRepository.findAll().forEach(employees::add);
-      if (employees.isEmpty()) {
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-      }
-  
-      return new ResponseEntity<>(employees, HttpStatus.OK);
+  @Autowired
+  EmployeeRepository employeeRepository;
+
+  @GetMapping("/employees")
+  public ResponseEntity<List<Employee>> getAllEmployees() {
+    List<Employee> employees = new ArrayList<Employee>();
+    employeeRepository.findAll().forEach(employees::add);
+    if (employees.isEmpty()) {
+      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/employees/{employeeNumber}")
-    public ResponseEntity<Employee> getEmployeeByEmployeeNumber(@PathVariable("employeeNumber") long employeeNumber) {
-      Employee _employee = employeeRepository.findById(employeeNumber)
-        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Employee with id = " + employeeNumber+ " not found"));
-    
-      return new ResponseEntity<>(_employee, HttpStatus.OK );  
+    return new ResponseEntity<>(employees, HttpStatus.OK);
+  }
+
+  @GetMapping("/employees/{employeeNumber}")
+  public ResponseEntity<Employee> getEmployeeByEmployeeNumber(@PathVariable("employeeNumber") long employeeNumber) {
+    Employee _employee = employeeRepository.findById(employeeNumber)
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+            "Employee with id = " + employeeNumber + " not found"));
+
+    return new ResponseEntity<>(_employee, HttpStatus.OK);
+  }
+
+  @GetMapping("/offices/{officeCode}/employees")
+  public ResponseEntity<List<Employee>> getEmployeesByOfficeCode(@PathVariable("officeCode") String officeCode) {
+    List<Employee> employees = new ArrayList<Employee>();
+    employees = employeeRepository.findByOfficeCode(officeCode);
+    if (employees.isEmpty()) {
+      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/offices/{officeCode}/employees")
-    public ResponseEntity<List<Employee>> getEmployeesByOfficeCode(@PathVariable("officeCode") String officeCode) {    
-      List<Employee> employees = new ArrayList<Employee>();
-      employees = employeeRepository.findByOfficeCode(officeCode);      
-      if (employees.isEmpty()) {
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-      }
+    return new ResponseEntity<>(employees, HttpStatus.OK);
+  }
 
-      return new ResponseEntity<>(employees, HttpStatus.OK);
+  @GetMapping("/employees/{employeeNumber}/employees")
+  public ResponseEntity<List<Employee>> getEmployeesByReportsTo(@PathVariable("employeeNumber") Long employeeNumber) {
+    List<Employee> employees = new ArrayList<Employee>();
+    employees = employeeRepository.findByReportsTo(employeeNumber);
+    if (employees.isEmpty()) {
+      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/employees/{employeeNumber}/employees")
-    public ResponseEntity<List<Employee>> getEmployeesByReportsTo(@PathVariable("employeeNumber") Long employeeNumber) {    
-      List<Employee> employees = new ArrayList<Employee>();
-      employees = employeeRepository.findByReportsTo(employeeNumber);      
-      if (employees.isEmpty()) {
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-      }
-
-      return new ResponseEntity<>(employees, HttpStatus.OK);
-    }
-
+    return new ResponseEntity<>(employees, HttpStatus.OK);
+  }
 
 }

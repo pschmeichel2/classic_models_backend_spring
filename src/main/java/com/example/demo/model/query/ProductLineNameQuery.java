@@ -10,7 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductLineNameQuery {
-    @Id @Getter 
+    @Id
+    @Getter
     private String productLineName; // int(11) NOT NULL,
 
 }

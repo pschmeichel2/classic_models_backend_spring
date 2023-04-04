@@ -10,7 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductVendorQuery {
-    @Id @Getter 
+    @Id
+    @Getter
     private String productVendor; // int(11) NOT NULL,
 
 }

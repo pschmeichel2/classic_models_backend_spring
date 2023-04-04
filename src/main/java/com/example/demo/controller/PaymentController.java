@@ -16,48 +16,46 @@ import com.example.demo.model.Payment;
 import com.example.demo.model.keys.PaymentPK;
 import com.example.demo.repository.PaymentRepository;
 
-@CrossOrigin(origins = {"http://localhost:8081", "http://localhost:4200"})
+@CrossOrigin(origins = { "http://localhost:8081", "http://localhost:4200" })
 @RestController
 @RequestMapping("/api")
 public class PaymentController {
-    
-    @Autowired
-    PaymentRepository paymentRepository;
-    
-    @GetMapping("/payments")
-    public ResponseEntity<List<Payment>> getAllPayments() {
-      List<Payment> payments = new ArrayList<Payment>();
-        paymentRepository.findAll().forEach(payments::add);
-      if (payments.isEmpty()) {
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-      }
-  
-      return new ResponseEntity<>(payments, HttpStatus.OK);
+
+  @Autowired
+  PaymentRepository paymentRepository;
+
+  @GetMapping("/payments")
+  public ResponseEntity<List<Payment>> getAllPayments() {
+    List<Payment> payments = new ArrayList<Payment>();
+    paymentRepository.findAll().forEach(payments::add);
+    if (payments.isEmpty()) {
+      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    
-    @GetMapping("/payments/{customerNumber}/{checkNumber}")
-    public ResponseEntity<Payment> getPaymentByCustomerNumberAndCheckNumber(
+    return new ResponseEntity<>(payments, HttpStatus.OK);
+  }
+
+  @GetMapping("/payments/{customerNumber}/{checkNumber}")
+  public ResponseEntity<Payment> getPaymentByCustomerNumberAndCheckNumber(
       @PathVariable("customerNumber") long customerNumber,
       @PathVariable("checkNumber") String checkNumber) {
-      PaymentPK paymentPk = new PaymentPK(customerNumber, checkNumber);
-      Payment _payment = paymentRepository.findById(paymentPk)
-        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, 
-        "Payment with id = " + customerNumber+ "/" + checkNumber + " not found"));
-    
-      return new ResponseEntity<>(_payment, HttpStatus.OK );  
+    PaymentPK paymentPk = new PaymentPK(customerNumber, checkNumber);
+    Payment _payment = paymentRepository.findById(paymentPk)
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+            "Payment with id = " + customerNumber + "/" + checkNumber + " not found"));
+
+    return new ResponseEntity<>(_payment, HttpStatus.OK);
+  }
+
+  @GetMapping("/customers/{customerNumber}/payments")
+  public ResponseEntity<List<Payment>> getOrdersByCustomerNumber(@PathVariable("customerNumber") long customerNumber) {
+    List<Payment> payments = new ArrayList<Payment>();
+    payments = paymentRepository.findByCustomerNumber(customerNumber);
+    if (payments.isEmpty()) {
+      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/customers/{customerNumber}/payments")
-    public ResponseEntity<List<Payment>> getOrdersByCustomerNumber(@PathVariable("customerNumber") long customerNumber) {    
-      List<Payment> payments = new ArrayList<Payment>();
-      payments = paymentRepository.findByCustomerNumber(customerNumber);      
-      if (payments.isEmpty()) {
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-      }
-
-      return new ResponseEntity<>(payments, HttpStatus.OK);
-    }
-    
+    return new ResponseEntity<>(payments, HttpStatus.OK);
+  }
 
 }

@@ -7,15 +7,16 @@ import lombok.Setter;
 
 @NoArgsConstructor
 public class PaymentPK implements Serializable {
-    @Getter @Setter
+    @Getter
+    @Setter
     protected Long customerNumber;
-    @Getter @Setter
+    @Getter
+    @Setter
     protected String checkNumber;
-    
+
     public PaymentPK(Long customerNumber, String checkNumber) {
         this.customerNumber = customerNumber;
         this.checkNumber = checkNumber;
     }
     // equals, hashCode
 }
-
