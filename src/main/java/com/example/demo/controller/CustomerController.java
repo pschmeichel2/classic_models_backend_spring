@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import com.example.demo.model.Customer;
 import com.example.demo.model.query.CustomerBalanceLineQuery;
+import com.example.demo.model.query.CustomerPurchaseAggregateQuery;
+import com.example.demo.model.query.CustomerPurchaseQuery;
 import com.example.demo.repository.CustomerRepository;
 
 @CrossOrigin(origins = { "http://localhost:8081", "http://localhost:4200" })
@@ -72,13 +74,39 @@ public class CustomerController {
   public ResponseEntity<List<CustomerBalanceLineQuery>> getCustomerBalanceByCustomerNumber(
       @PathVariable("customerNumber") long customerNumber) {
 
-    List<CustomerBalanceLineQuery> _balanceLines = customerRepository.getCustomerBalanceLines(customerNumber);
+    List<CustomerBalanceLineQuery> balanceLines = customerRepository.getCustomerBalanceLines(customerNumber);
 
-    if (_balanceLines.isEmpty()) {
+    if (balanceLines.isEmpty()) {
       return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
         
-    return new ResponseEntity<List<CustomerBalanceLineQuery>>(_balanceLines, HttpStatus.OK);
+    return new ResponseEntity<List<CustomerBalanceLineQuery>>(balanceLines, HttpStatus.OK);
+  }
+
+  @GetMapping("/customers/{customerNumber}/purchases")
+  public ResponseEntity<List<CustomerPurchaseQuery>> getCustomerPurchasesByCustomerNumber(
+      @PathVariable("customerNumber") long customerNumber) {
+
+    List<CustomerPurchaseQuery> purchases = customerRepository.getCustomerPurchases(customerNumber);
+
+    if (purchases.isEmpty()) {
+      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+        
+    return new ResponseEntity<List<CustomerPurchaseQuery>>(purchases, HttpStatus.OK);
+  }
+
+  @GetMapping("/customers/{customerNumber}/purchaseAggregates")
+  public ResponseEntity<List<CustomerPurchaseAggregateQuery>> getCustomerPurchaseAggregatesByCustomerNumber(
+      @PathVariable("customerNumber") long customerNumber) {
+
+    List<CustomerPurchaseAggregateQuery> purchases = customerRepository.getCustomerPurchaseAggregates(customerNumber);
+
+    if (purchases.isEmpty()) {
+      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+        
+    return new ResponseEntity<List<CustomerPurchaseAggregateQuery>>(purchases, HttpStatus.OK);
   }
 
   @GetMapping("/employees/{employeeNumber}/customers")

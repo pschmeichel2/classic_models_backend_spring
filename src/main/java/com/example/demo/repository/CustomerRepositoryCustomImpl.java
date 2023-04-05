@@ -1,13 +1,18 @@
 package com.example.demo.repository;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import com.example.demo.model.Customer;
 import com.example.demo.model.query.CustomerBalanceLineQuery;
+import com.example.demo.model.query.CustomerPurchaseAggregateQuery;
+import com.example.demo.model.query.CustomerPurchaseQuery;
 import com.example.demo.model.Country;
 
 public class CustomerRepositoryCustomImpl implements CustomerRepositoryCustom {
@@ -155,14 +160,73 @@ public class CustomerRepositoryCustomImpl implements CustomerRepositoryCustom {
         Float balance = 0.0f;
         for (CustomerBalanceLineQuery balanceLine : balanceLines) {
             String status = balanceLine.getStatus();
-            if( !status.equals("On Hold") && !status.equals("In Process")) {
+            if (isStatusToBeSubtractedFromBalance(status)) {
                 balance += balanceLine.getAmount();
             }
             balanceLine.setBalance(balance);
-            
+
         }
-    
+
         return balanceLines;
+    }
+
+    @Override
+    public List<CustomerPurchaseQuery> getCustomerPurchases(Long customerNumber) {
+        String sql = """
+                select
+                    concat(od.orderNumber, '/', od.productCode ) as id,
+                    od.priceEach * od.quantityOrdered as total,
+                    od.productCode as productCode,
+                    p.productName as productName,
+                    p.productLine as productLine,
+                    o.orderDate as orderDate
+                from orderdetails od
+                join orders o on od.orderNumber = o.orderNumber
+                join products p on od.productCode = p.productCode
+                join productlines pl on pl.productLine = p.productLine
+                where o.customerNumber = :customerNumber
+                """;
+
+        Query query = entityManager.createNativeQuery(sql, CustomerPurchaseQuery.class);
+        query.setParameter("customerNumber", customerNumber);
+
+        @SuppressWarnings("unchecked")
+        List<CustomerPurchaseQuery> purchases = query.getResultList();
+
+        return purchases;
+    }
+
+    @Override
+    public List<CustomerPurchaseAggregateQuery> getCustomerPurchaseAggregates(Long customerNumber) {
+        String sql = """
+            select 
+                od.productCode as id,
+                sum(od.priceEach * od.quantityOrdered) as total,
+                od.productCode as productCode,
+                p.productName as productName,
+                p.productLine as productLine	
+            from orderdetails od
+            join orders o on od.orderNumber = o.orderNumber
+            join products p on od.productCode = p.productCode 
+            join productlines pl on pl.productLine = p.productLine 
+            where o.customerNumber = :customerNumber
+            and status not in ('Cancelled')
+            group by od.productCode 
+            order by productLine, productCode
+            """;
+
+        Query query = entityManager.createNativeQuery(sql, CustomerPurchaseAggregateQuery.class);
+        query.setParameter("customerNumber", customerNumber);
+
+        @SuppressWarnings("unchecked")
+        List<CustomerPurchaseAggregateQuery> purchases = query.getResultList();
+
+        return purchases;
+    }
+
+    private boolean isStatusToBeSubtractedFromBalance(String status) {
+        boolean isToBeSubtracted = Stream.of("Shipped", "Resolved", "Payment").anyMatch(status::contains);
+        return isToBeSubtracted;
     }
 
     static boolean isNullOrBlank(String s) {
