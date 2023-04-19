@@ -36,7 +36,9 @@ This Webservice uses:
 * You can build an executable jar File with "./gradlew bootJar".
 
 ## News
-* Implemented first version of Order Entry
+* Implemented Order Entry
+* Implemented Customer Queries
+* Readme for AWS deployment
 
 ## Todos
 * Clean up code
