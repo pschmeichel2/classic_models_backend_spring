@@ -10,7 +10,7 @@ import lombok.Getter;
 
 @Entity
 @IdClass(PaymentPK.class)
-@Table(name = "payments")
+@Table(name = "Payments")
 public class Payment {
     @Id
     @Getter

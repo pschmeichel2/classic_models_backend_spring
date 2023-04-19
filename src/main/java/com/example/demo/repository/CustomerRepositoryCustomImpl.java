@@ -24,7 +24,7 @@ public class CustomerRepositoryCustomImpl implements CustomerRepositoryCustom {
     public List<String> getCountries() {
         String sql = """
                 select distinct(country) as country
-                from customers
+                from Customers
                 order by 1
                 """;
 
@@ -133,7 +133,7 @@ public class CustomerRepositoryCustomImpl implements CustomerRepositoryCustom {
                         coalesce(o.shippedDate, o.requiredDate, o.orderNumber, null) as transactionDate,
                         o.status,
                         coalesce((select sum(quantityOrdered * priceEach)
-                            from orderdetails od
+                            from OrderDetails od
                             where od.ordernumber = o.orderNumber),0) * -1 as amount,
                             0 as balance
                     from Orders o
@@ -145,7 +145,7 @@ public class CustomerRepositoryCustomImpl implements CustomerRepositoryCustom {
                         'Payment' as status,
                         amount,
                         0 as balance
-                    from payments p
+                    from Payments p
                     where p.customerNumber = :customerNumber
                     )
                     order by transactionDate
@@ -180,10 +180,10 @@ public class CustomerRepositoryCustomImpl implements CustomerRepositoryCustom {
                     p.productName as productName,
                     p.productLine as productLine,
                     o.orderDate as orderDate
-                from orderdetails od
-                join orders o on od.orderNumber = o.orderNumber
-                join products p on od.productCode = p.productCode
-                join productlines pl on pl.productLine = p.productLine
+                from OrderDetails od
+                join Orders o on od.orderNumber = o.orderNumber
+                join Products p on od.productCode = p.productCode
+                join ProductLines pl on pl.productLine = p.productLine
                 where o.customerNumber = :customerNumber
                 """;
 
@@ -205,10 +205,10 @@ public class CustomerRepositoryCustomImpl implements CustomerRepositoryCustom {
                 od.productCode as productCode,
                 p.productName as productName,
                 p.productLine as productLine	
-            from orderdetails od
-            join orders o on od.orderNumber = o.orderNumber
-            join products p on od.productCode = p.productCode 
-            join productlines pl on pl.productLine = p.productLine 
+            from OrderDetails od
+            join Orders o on od.orderNumber = o.orderNumber
+            join Products p on od.productCode = p.productCode 
+            join ProductLines pl on pl.productLine = p.productLine 
             where o.customerNumber = :customerNumber
             and status not in ('Cancelled')
             group by od.productCode 

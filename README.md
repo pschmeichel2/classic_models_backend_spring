@@ -33,6 +33,7 @@ This Webservice uses:
 * Switch to the directory where you unzipped the "Libs"-Artifact.
 * Start the Webservice with "java -jar demo-0.0.1-SNAPSHOT.jar". It should show the "Spring"-Logo on startup.
 * The Swagger GUI is available at http://localhost:8080/swagger-ui/index.html.
+* You can build an executable jar File with "./gradlew bootJar".
 
 ## News
 * Implemented first version of Order Entry

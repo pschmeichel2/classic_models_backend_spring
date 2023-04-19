@@ -85,15 +85,15 @@ public class OrderRepositoryCustomImpl implements OrderRepositoryCustom {
                 o.customerNumber,
                 c.customerName,
                 coalesce((select sum(quantityOrdered * priceEach)
-                    from orderdetails od
+                    from OrderDetails od
                     where od.ordernumber = o.orderNumber),0) as totalOrderPrice,
                 coalesce((select sum(quantityOrdered * msrp)
-                    from orderdetails od
+                    from OrderDetails od
                     join products p on od.productCode = p.productCode
                     where od.ordernumber = o.orderNumber),0) as recommendedOrderPrice,
                 coalesce((select sum(quantityOrdered * buyPrice)
-                    from orderdetails od
-                    join products p on od.productCode = p.productCode
+                    from Orderdetails od
+                    join Products p on od.productCode = p.productCode
                     where od.ordernumber = o.orderNumber),0) as buyPrice
             from Orders o
             left join Customers c on o.customerNumber = c.customerNumber

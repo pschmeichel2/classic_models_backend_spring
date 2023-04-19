@@ -19,7 +19,7 @@ public class ProductRepositoryCustomImpl implements ProductRepositoryCustom {
     public List<String> getProductLines() {
         String sql = """
                 select distinct(productLine) as productLineName
-                from products
+                from Products
                 order by 1
                 """;
 
@@ -39,7 +39,7 @@ public class ProductRepositoryCustomImpl implements ProductRepositoryCustom {
     public List<String> getProductVendors() {
         String sql = """
                 select distinct(productVendor) as productVendor
-                from products
+                from Products
                 order by 1
                 """;
 

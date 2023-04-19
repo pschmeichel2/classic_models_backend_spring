@@ -4,7 +4,7 @@ import javax.persistence.*;
 import lombok.Getter;
 
 @Entity
-@Table(name = "productlines")
+@Table(name = "ProductLines")
 public class ProductLine {
     @Id
     @Getter
