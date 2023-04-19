@@ -44,7 +44,7 @@ This Webservice uses:
 * Clean up code
 * Eliminate duplicate code 
 * Write Tests
-* CRUD is only implemented for "office" table; also first version of Order and OrderDetail Entry
+* CRUD is only implemented for "office" table; also Order and OrderDetail Entry
 * Validation is only implemented for "office" table
 * Logging
 * Docker
