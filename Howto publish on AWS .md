@@ -57,3 +57,13 @@ First draft, just some quick notes.
 		* SPRING_JPA_DATABASE_PLATFORM : org.hibernate.dialect.MySQL8Dialect
 
     * Add the new environment to the Database's ec2 inbound security rule.
+
+    ## Test the service
+    * Status should be "ok"
+    * Logfiles
+        * Click on "Protocols", select a protocol from the combobox on the right side
+    * Start the Swagger Frontend
+    
+        * Click on the link below "Domain", this should be something like http://classicmodels-backend-env......eu-central-1.elasticbeanstalk.com/
+        * This should produce a "whitelabel" error.
+        * Just add "/swagger-ui/index.html" to the "domain" URL. This should display the Swagger frontend and enable you to test the services.
