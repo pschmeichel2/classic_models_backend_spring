@@ -2,18 +2,23 @@
 
 First draft, just some quick notes.
 
-## Create a free aws account
+## Create a free AWS Account
+* [Create free AWS Account](https://aws.amazon.com/de/free)
 
 ## Create a mysql database in Amazon RDS
-* copy the passwort displayed on top of the screen
+* [Go to Amazon AWS console](https://eu-central-1.console.aws.amazon.com/rds/home?region=eu-central-1#databases:)
+* Create database - MySQL - free
+* Select a database instance name, user id and password.
+    * If you chose to let AWS create a password, it will be displayed at the top of the screen after creation of the database. 
+    You'll need to copy it from there, later on there's no way to retrieve it; you can only create a new password 
+    (select the database instance from the console and click "Modify").
 
 ## Configure the database
-* In Security Group Rules, Inbound, add your local IP address
-* Test access to the database with a local database client (e.g. dBeaver)
-* To create the mysql sample database, just open the sample script and run it from dbeaver
-* RDS databases are case sensitive on AWS !!! (and on Unix in general)
+* In Security Group Rules, Inbound, add your local IP address.
+* Test access to the database with a local database client (e.g. [dBeaver](https://dbeaver.io/)).
+* To create the MySQL [Sample Database](https://www.mysqltutorial.org/mysql-sample-database.aspx), just open it's script and run it from dBeaver.
+* MySQL databases are case sensitive on AWS !!! (and on Unix in general)
     * change system variable lower_case_table_names, or: 
-
 ----
             RENAME TABLE classicmodels.customers TO classicmodels.Customers;
             RENAME TABLE classicmodels.employees  TO classicmodels.Employees;
