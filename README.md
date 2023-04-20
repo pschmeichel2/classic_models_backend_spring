@@ -38,7 +38,7 @@ This Webservice uses:
 ## News
 * Implemented Order Entry
 * Implemented Customer Queries
-* [Readme for AWS deployment](./HowtoPublishOnAWS.md)
+* [Readme for AWS deployment](./doc/HowtoPublishOnAWS.md)
 
 ## Todos
 * Clean up code
@@ -59,7 +59,7 @@ This Webservice uses:
 
 
 ### MySQL Sample Database
-![MySQL Sample Database](mysql-sample-database.png)
+![MySQL Sample Database](./doc/mysql-sample-database.png)
 
 
 
