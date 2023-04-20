@@ -38,7 +38,7 @@ This Webservice uses:
 ## News
 * Implemented Order Entry
 * Implemented Customer Queries
-* Readme for AWS deployment
+* [Readme for AWS deployment](Howto publish on AWS.md)
 
 ## Todos
 * Clean up code
