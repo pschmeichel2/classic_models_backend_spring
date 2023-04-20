@@ -40,16 +40,15 @@ First draft, just some quick notes.
 
 ### Elastic Beanstalk console
 * Create environment
-	* Platform: java
-	* Version: 0.1
-	* Upload code - Local file - Select my jar file		
-	* next
+    * Platform: Java 17
+    * Version: 0.1
+    * Upload code - Local file - Select my jar file		
+    * next
 	* VPC: select the same VPC as the database
-	* Availability zone: same as the database (Frankfurt=eu*central*1a)
+	* Availability zone: same as the database (Frankfurt=eu central 1a)
 	* Database: **DO NOT SELECT THIS**
 	* ec2 security group: default
 	* Environment variables:
-
 	    * SERVER_PORT : 5000 
 		* SPRING_DATASOURCE_URL : jdbc:mysql://....rds.amazonaws.com:3306/classicmodels
 		* SPRING_DATASOURCE_USERNAME :  admin
