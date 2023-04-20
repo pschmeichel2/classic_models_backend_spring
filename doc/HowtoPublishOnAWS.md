@@ -6,9 +6,10 @@ First draft, just some quick notes.
 * [Create free AWS Account](https://aws.amazon.com/de/free)
 
 ## Create a mysql database in Amazon RDS
-* [Go to Amazon AWS console](https://eu-central-1.console.aws.amazon.com/rds/home?region=eu-central-1#databases:)
+* [Go to Amazon RDS console](https://eu-central-1.console.aws.amazon.com/rds/home?region=eu-central-1#databases:)
+    * The link above is for the region eu-central-1 (Frankfurt).
 * Create database - MySQL - free
-* Select a database instance name, user id and password.
+* Enter a database instance name, user id and password.
     * If you chose to let AWS create a password, it will be displayed at the top of the screen after creation of the database. 
     You'll need to copy it from there, later on there's no way to retrieve it; you can only create a new password 
     (select the database instance from the console and click "Modify").
