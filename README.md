@@ -1,10 +1,10 @@
 # classic_models_backend_spring
 
 ## What it is
-This is a simple Webservice Backend for the [MySQL Sample Database](https://www.mysqltutorial.org/mysql-sample-database.aspx) "classicmodels".
+This is a simple webservice backend for the [MySQL sample database](https://www.mysqltutorial.org/mysql-sample-database.aspx) "classicmodels".
 
-It can be used by any webservice-enabled frontend. Also it has a built-in [Swagger](https://swagger.io/) GUI.
-You can find my frontend at "classic_models_frontend_vue".
+It can be used by any webservice-enabled frontend. It also has a built-in [Swagger](https://swagger.io/) GUI.
+You can find my Vue.js frontend at "classic_models_frontend_vue".
 
 ### Tooling
 This Webservice uses:
@@ -20,36 +20,36 @@ This Webservice uses:
 ### Database
 
 * [Install MySQL](https://www.mysqltutorial.org/install-mysql/)
-* Download and install the [Sample Database](https://www.mysqltutorial.org/mysql-sample-database.aspx)
-* You could test the Database Installation with [dBeaver](https://dbeaver.io/).
+* Download and install the [sample database](https://www.mysqltutorial.org/mysql-sample-database.aspx)
+* You can test the database installation with [dBeaver](https://dbeaver.io/).
 
-### Webservice
+### Web Service
 * Install [Java JRE 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) (or newer).
-* Download the artifact "Libs" from this GitHub project, and unzip the artifact.
+* Download the artifact "libs" from this GitHub project, and unzip it.
 
-## How to run the Webservice
+## How to run the web service
 * Open a command prompt
-* Verify your Java installation with "java --version". It should be version 17.
-* Switch to the directory where you unzipped the "Libs"-Artifact.
-* Start the Webservice with "java -jar demo-0.0.1-SNAPSHOT.jar". It should show the "Spring"-Logo on startup.
-* The Swagger GUI can be found at http://localhost:8080/swagger-ui/index.html.
-* You can build an executable jar File with "./gradlew bootJar".
+* Check your Java installation with "java --version". It should be version 17.
+* Change to the directory where you unzipped the libs artifact.
+* Start the web service with "java -jar demo-0.0.1-SNAPSHOT.jar". It should display the Spring logo on startup.
+* The Swagger GUI is available from http://localhost:8080/swagger-ui/index.html.
+* You can build an executable jar file with "./gradlew bootJar".
 
 ## News
-* Implemented Order Entry
-* Implemented Customer Queries
-* [Readme for AWS deployment](./doc/HowtoPublishOnAWS.md)
+* Order Entry implemented
+* Customer Queries implemented
+* [Readme for AWS Deployment](./doc/HowtoPublishOnAWS.md)
 
-## Todos
+## To Do
 * Clean up code
-* Eliminate duplicate code 
-* Write Tests
-* CRUD is only implemented for "office" table; also Order and OrderDetail Entry
-* Validation is only implemented for "office" table
+* Remove duplicate code 
+* Write tests
+* CRUD implemented only for offices, orders and orderdetails
+* Validation is implemented for "office" table only
 * Logging
 * Docker
-* Host it on Azure
-* Internalization of error messages
+* Hosting on AWS
+* Globalization of error messages
 * ...
 
 ## Pictures
@@ -58,8 +58,8 @@ This Webservice uses:
 ![Swagger GUI](./doc/swagger.png)
 
 
-### MySQL Sample Database
-![MySQL Sample Database](./doc/mysql-sample-database.png)
+### MySQL sample database
+![MySQL sample database](./doc/mysql-sample-database.png)
 
 
 
