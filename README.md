@@ -32,13 +32,13 @@ This Webservice uses:
 * Verify your Java installation with "java --version". It should be version 17.
 * Switch to the directory where you unzipped the "Libs"-Artifact.
 * Start the Webservice with "java -jar demo-0.0.1-SNAPSHOT.jar". It should show the "Spring"-Logo on startup.
-* The Swagger GUI is available at http://localhost:8080/swagger-ui/index.html.
+* The Swagger GUI can be found at http://localhost:8080/swagger-ui/index.html.
 * You can build an executable jar File with "./gradlew bootJar".
 
 ## News
 * Implemented Order Entry
 * Implemented Customer Queries
-* [Readme for AWS deployment](Howto publish on AWS.md)
+* [Readme for AWS deployment](./HowtoPublishOnAWS.md)
 
 ## Todos
 * Clean up code
