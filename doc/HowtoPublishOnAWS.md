@@ -18,7 +18,7 @@ First draft, just some quick notes.
 * In Security Group Rules, Inbound, add your local IP address.
 * Test access to the database with a local database client (e.g. [dBeaver](https://dbeaver.io/)).
 * To create the MySQL [Sample Database](https://www.mysqltutorial.org/mysql-sample-database.aspx), just open it's script and run it from dBeaver.
-* MySQL databases are case sensitive on AWS !!! (and on Unix in general)
+* MySQL table names are case sensitive on AWS !!! (and on Unix in general)
     * change system variable lower_case_table_names, or: 
 ----
             RENAME TABLE classicmodels.customers TO classicmodels.Customers;
