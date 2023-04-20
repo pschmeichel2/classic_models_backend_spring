@@ -55,7 +55,7 @@ This Webservice uses:
 ## Pictures
 
 ### Swagger GUI
-![Swagger GUI](swagger.png)
+![Swagger GUI](./doc/swagger.png)
 
 
 ### MySQL Sample Database
