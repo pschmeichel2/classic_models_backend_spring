@@ -78,13 +78,12 @@ First draft, just some quick notes.
 
     ## Check AWS invoices and save money
     * [AWS Cost Management Console](https://us-east-1.console.aws.amazon.com/cost-management/home?region=eu-central-1#/dashboard)
-        * You'll be getting a new invoice for each month, and you'll also get a (small) free budget with your "free" account. So, sometime in the middle of the month, your free budget will be exhausted, and AWS will start billing you.
-    * [AWS Resource Explorer](https://resource-explorer.console.aws.amazon.com/resource-explorer/home?region=eu-central-1#/search). Per default, this will ony show one region at a time, e.g. "Europe (Frankfurt)"", make sure to select "Global".
+        * You'll be getting a new invoice for each month, and you'll also get a (small) free budget with your "free" account. So, sometime in the middle of the month, your free budget will run out, and AWS will start charging you.
+    * [AWS Resource Explorer](https://resource-explorer.console.aws.amazon.com/resource-explorer/home?region=eu-central-1#/search). Per default, this will ony show one region at a time, e.g. "Europe (Frankfurt)", make sure to select "Global".
     * [EC2 Instances Console](https://eu-central-1.console.aws.amazon.com/ec2/home)
     * [VPCs Console](https://eu-central-1.console.aws.amazon.com/vpc/home?region=eu-central-1#vpcs:)
         * VPCs (Virtual PCs) cost money. Make shure you terminate any VPCs you don't need anymore.
-        * If you have created an autoscaling group for your instance, the terminated VPC will be automatically restarted.
-        * Instead you must [delete the instance's autoscaling group](https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-process-shutdown.html).
+        * If you have created an autoscaling group for your instance, the terminated VPC will be automatically restarted. Instead you must [delete the instance's autoscaling group](https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-process-shutdown.html).
     * You have a limited budget of external IP addresses (10) ("Elastic IP addresses"), [make sure you delete them if you don't need them.](https://eu-central-1.console.aws.amazon.com/ec2/v2/home?region=eu-central-1#Addresses:)
 
 
