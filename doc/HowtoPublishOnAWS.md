@@ -17,9 +17,11 @@ First draft, just some quick notes.
 ## Configuring the database
 * In Security Group Rules, Inbound, add your local IP address.
 * Test access to the database using a local database client (such as [dBeaver](https://dbeaver.io/)).
+** Enter the "Endpoint" from the RDS database screen as the "Server-Host" in dBeaver.
 * To create the MySQL [sample database](https://www.mysqltutorial.org/mysql-sample-database.aspx), just open it's script and run it from within dBeaver.
 * MySQL table names are case sensitive on AWS !!! (and on Unix in general)
-    * Change the system variable lower_case_table_names, or: 
+    * We want the table names to be camel case, because Spring Boot prefers those, and the table names will be replicated as class names in your Spring Boot application.
+    * Change the MySql system variable lower_case_table_names, or: 
 ----
             RENAME TABLE classicmodels.customers TO classicmodels.Customers;
             RENAME TABLE classicmodels.employees  TO classicmodels.Employees;
