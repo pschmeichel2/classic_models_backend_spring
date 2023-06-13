@@ -21,7 +21,7 @@ import com.example.demo.model.query.OrderDetailQuery;
 import com.example.demo.model.OrderDetail;
 import com.example.demo.repository.OrderDetailRepository;
 
-@CrossOrigin(origins = { "http://localhost:8081", "http://localhost:4200" })
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
 public class OrderDetailController {

@@ -18,7 +18,7 @@ import com.example.demo.model.query.CustomerPurchaseAggregateQuery;
 import com.example.demo.model.query.CustomerPurchaseQuery;
 import com.example.demo.repository.CustomerRepository;
 
-@CrossOrigin(origins = { "http://localhost:8081", "http://localhost:4200" })
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
 public class CustomerController {

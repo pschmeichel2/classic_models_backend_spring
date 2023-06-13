@@ -24,7 +24,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.example.demo.model.Office;
 import com.example.demo.repository.OfficeRepository;
 
-@CrossOrigin(origins = { "http://localhost:8081", "http://localhost:4200" })
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
 public class OfficeController {

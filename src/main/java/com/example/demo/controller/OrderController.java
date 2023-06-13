@@ -28,7 +28,7 @@ import com.example.demo.repository.OrderDetailRepository;
 import com.example.demo.repository.OrderRepository;
 import com.example.demo.service.OrderService;
 
-@CrossOrigin(origins = { "http://localhost:8081", "http://localhost:4200" })
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
 public class OrderController {

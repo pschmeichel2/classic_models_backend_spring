@@ -15,7 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.example.demo.model.ProductLine;
 import com.example.demo.repository.ProductLineRepository;
 
-@CrossOrigin(origins = { "http://localhost:8081", "http://localhost:4200" })
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
 public class ProductLineController {
