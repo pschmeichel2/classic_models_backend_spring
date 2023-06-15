@@ -7,7 +7,7 @@ plugins {
 	id "war"
 }
 
-group = 'com.example'
+group = 'com.classicmodels'
 version = '0.0.2-SNAPSHOT'
 sourceCompatibility = '17'
 

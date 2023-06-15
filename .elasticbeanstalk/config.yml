@@ -2,6 +2,10 @@ branch-defaults:
   main:
     environment: null
     group_suffix: null
+  master:
+    environment: Classicmodels-backend-env
+deploy:
+  artifact: ./build/libs/classicmodels-0.0.2-SNAPSHOT.jar
 environment-defaults:
   Vue8-env:
     branch: null
@@ -18,5 +22,3 @@ global:
   profile: eb-cli
   sc: git
   workspace_type: Application
-deploy:
-  artifact: ./build/libs/demo-0.0.2-SNAPSHOT.jar
