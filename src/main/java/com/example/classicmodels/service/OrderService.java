@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 import com.example.classicmodels.model.Order;
 import com.example.classicmodels.model.OrderDetail;
-import com.example.classicmodels.model.keys.OrderDetailPK;
 import com.example.classicmodels.model.updates.OrderDetailUpdate;
 import com.example.classicmodels.model.updates.OrderUpdate;
 import com.example.classicmodels.repository.OrderDetailRepository;
@@ -45,18 +44,10 @@ public class OrderService {
             OrderDetail orderDetail = OrderDetail.fromOrderDetailUpdate(orderDetailUpdate);
             orderDetail.setOrderNumber(order.getOrderNumber());
             orderDetail.setOrderLineNumber(orderLineNumber);
-            OrderDetail newOrderDetail = orderDetailRepository.save(orderDetail);
+            orderDetailRepository.save(orderDetail);
             orderLineNumber++;
         }
         return newOrder;
-    }
-
-    private void deleteOrder(OrderUpdate orderUpdate) {
-        for (OrderDetailUpdate orderDetailUpdate : orderUpdate.getOrderDetails()) {
-            OrderDetailPK pkToDelete = orderDetailUpdate.getPk();
-            orderDetailRepository.deleteById(pkToDelete);
-        }
-        orderRepository.deleteById(orderUpdate.getOrderNumber());
     }
 
     @Transactional

@@ -19,6 +19,7 @@ public class Customer {
     @Setter
     private Long customerNumber; // int(11) NOT NULL,
     @Getter
+    @Setter
     private String customerName; // varchar(50) NOT NULL,
     @Getter
     private String contactLastName; // varchar(50) NOT NULL,
