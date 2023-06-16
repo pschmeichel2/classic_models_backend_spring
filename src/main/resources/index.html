@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Classicmodels API Reference</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            margin-top: 10px;
+            color: #666;
+        }
+
+        .endpoint {
+            margin-bottom: 30px;
+        }
+
+        .endpoint h3 {
+            margin-bottom: 10px;
+        }
+
+        .endpoint p {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1><code>Classicmodels</code> API Reference</h1>
+    <p>The Classicmodels API is organized around REST. 
+        Our API has predictable resource-oriented URLs, 
+        accepts form-encoded request bodies, 
+        returns JSON-encoded responses, 
+        and uses standard HTTP response codes, authentication, 
+        and verbs.</p>
+
+    <p>You can test the API with it's Swagger GUI at <b><code>/swagger-ui/index.html.</code></b></p>        
+        
+
+    <div class="endpoint">
+        <h3>Endpoint <code>api/countries</code></h3>
+        <table>
+            <tr>
+                <td><b>GET</b></td>
+                <td><b><code>/api/countries</code></b></td>
+                <td>Retrieve all countries.</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="endpoint">
+        <h3>Endpoint <code>api/customers</code></h3>
+        <table>
+            <tr>
+                <td><b>GET</b></td>
+                <td><b><code>/api/customers</code></b></td>
+                <td>Retrieve all customers.</td>
+            </tr>
+            <tr>
+                <td><b>GET</b></td>
+                <td><b><code>/api/customers/:customerNumber</code></b></td>
+                <td>Retrieve one customer.</td>
+            </tr>
+            <tr>
+                <td><b>GET</b></td>
+                <td><b><code>/api/customers/:customerNumber/purchases</code></b></td>
+                <td>Retrieve the purchases (order details) of a customer.</td>
+            </tr>
+            <tr>
+                <td><b>GET</b></td>
+                <td><b><code>/api/customers/:customerNumber/purchaseAggregates</code></b></td>
+                <td>Retrieve the aggregated purchases for a customer.</td>
+            </tr>
+            <tr>
+                <td><b>GET</b></td>
+                <td><b><code>/api/customers/:customerNumber/balance</code></b></td>
+                <td>Retrieve the balance transactions for a customer.</td>
+            </tr>
+            <tr>
+                <td><b>GET</b></td>
+                <td><b><code>/api/customers/:customerNumber/orders</code></b></td>
+                <td>Retrieve the orders of a customer.</td>
+            </tr>
+            <tr>
+                <td><b>GET</b></td>
+                <td><b><code>/api/customers/:customerNumber/ordertotals</code></b></td>
+                <td>Retrieve the order totals of a customer.</td>
+            </tr>
+            <tr>
+                <td><b>GET</b></td>
+                <td><b><code>/api/customers/:customerNumber/payments</code></b></td>
+                <td>Retrieve the payments of a customer.</td>
+            </tr>
+
+        </table>
+    </div>
+
+    <div class="endpoint">
+        <h3>Endpoint <code>api/employees</code></h3>
+        <table>
+            <tr>
+                <td><b>GET</b></td>
+                <td><b><code>/api/employees</code></b></td>
+                <td>Retrieve all employees.</td>
+            </tr>
+            <tr>
+                <td><b>GET</b></td>
+                <td><b><code>/api/employees/:emplyeeNumber</code></b></td>
+                <td>Retrieve one employee.</td>
+            </tr>
+            <tr>
+                <td><b>GET</b></td>
+                <td><b><code>/api/employees/:employeeNumber/employees</code></b></td>
+                <td>Retrieve the subordinates of a manager.</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="endpoint">
+        <h3>Endpoint <code>api/offices</code></h3>
+        <table>
+            <tr>
+                <td><b>GET</b></td>
+                <td><b><code>/api/offices</code></b></td>
+                <td>Retrieve all offices.</td>
+            </tr>
+            <tr>
+                <td><b>GET</b></td>
+                <td><b><code>/api/offices/:officeCode</code></b></td>
+                <td>Retrieve an office.</td>
+            </tr>
+            <tr>
+                <td><b>GET</b></td>
+                <td><b><code>/api/offices/:officeCode/employees</code></b></td>
+                <td>Retrieve all employees working in an office.</td>
+            </tr>
+            <tr>
+                <td><b>POST</b></td>
+                <td><b><code>/api/offices</code></b></td>
+                <td>Create a new office.</td>
+            </tr>
+            <tr>
+                <td><b>PUT</b></td>
+                <td><b><code>/api/offices/:officeCode</code></b></td>
+                <td>Update an existing office.</td>
+            </tr>
+            <tr>
+                <td><b>DELETE</b></td>
+                <td><b><code>/api/offices/:officeCode</code></b></td>
+                <td>Delete an office.</td>
+            </tr>
+
+        </table>
+    </div>
+
+    <div class="endpoint">
+        <h3>Endpoint <code>api/orderDetails</code></h3>
+        <table>
+            <tr>
+                <td><b>GET</b></td>
+                <td><b><code>/api/orderDetails</code></b></td>
+                <td>Retrieve all order details.</td>
+            </tr>
+            <tr>
+                <td><b>POST</b></td>
+                <td><b><code>/api/orderDetails</code></b></td>
+                <td>Create a new order detail.</td>
+            </tr>
+
+        </table>
+    </div>
+
+    <div class="endpoint">
+        <h3>Endpoint <code>api/orders</code></h3>
+        <table>
+            <tr>
+                <td><b>GET</b></td>
+                <td><b><code>/api/orders</code></b></td>
+                <td>Retrieve all orders.</td>
+            </tr>
+            <tr>
+                <td><b>GET</b></td>
+                <td><b><code>/api/orders/:orderNumber</code></b></td>
+                <td>Retrieve an order. To get the OrderDetails, use the /api/orderDetails Endpoint.</td>
+            </tr>
+            <tr>
+                <td><b>GET</b></td>
+                <td><b><code>/api/orders/:orderNumber/orderDetails</code></b></td>
+                <td>Retrieve the order details for an order.</td>
+            </tr>
+            <tr>
+                <td><b>GET</b></td>
+                <td><b><code>/api/orders/:orderNumber/:productCode</code></b></td>
+                <td>Retrieve one single order detail, identified by order number and product code.</td>
+            </tr>
+            <tr>
+                <td><b>POST</b></td>
+                <td><b><code>/api/orders</code></b></td>
+                <td>Create a new order. The Json object should contain OrderDetails.</td>
+            </tr>
+            <tr>
+                <td><b>PUT</b></td>
+                <td><b><code>/api/orders/:orderNumber</code></b></td>
+                <td>Update an existing order. The Json Object should contain OrderDetails.</td>
+            </tr>
+            <tr>
+                <td><b>DELETE</b></td>
+                <td><b><code>/api/orders/:orderNumber</code></b></td>
+                <td>Delete an order. The order's details will be deleted, too.</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="endpoint">
+        <h3>Endpoint <code>api/payments</code></h3>
+        <table>
+            <tr>
+                <td><b>GET</b></td>
+                <td><b><code>/api/payments</code></b></td>
+                <td>Retrieve all payments.</td>
+            </tr>
+            <tr>
+                <td><b>GET</b></td>
+                <td><b><code>/api/payments/:customerNumber/:checkNumber</code></b></td>
+                <td>Retrieve one payment.</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="endpoint">
+        <h3>Endpoint <code>api/productLineNames</code></h3>
+        <table>
+            <tr>
+                <td><b>GET</b></td>
+                <td><b><code>/api/productLineNames</code></b></td>
+                <td>Retrieve the names of all product lines.</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="endpoint">
+        <h3>Endpoint <code>api/productLines</code></h3>
+        <table>
+            <tr>
+                <td><b>GET</b></td>
+                <td><b><code>/api/productLines</code></b></td>
+                <td>Retrieve all product lines.</td>
+            </tr>
+            <tr>
+                <td><b>GET</b></td>
+                <td><b><code>/api/productLines/:productLine</code></b></td>
+                <td>Retrieve one product line.</td>
+            </tr>
+            <tr>
+                <td><b>GET</b></td>
+                <td><b><code>/api/productLines/:productLine/products</code></b></td>
+                <td>Retrieve all products for a product line.</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="endpoint">
+        <h3>Endpoint <code>api/products</code></h3>
+        <table>
+            <tr>
+                <td><b>GET</b></td>
+                <td><b><code>/api/products</code></b></td>
+                <td>Retrieve all products.</td>
+            </tr>
+            <tr>
+                <td><b>GET</b></td>
+                <td><b><code>/api/products/:productCode</code></b></td>
+                <td>Retrieve a product.</td>
+            </tr>
+            <tr>
+                <td><b>GET</b></td>
+                <td><b><code>/api/products/:productCode/orderDetails</code></b></td>
+                <td>Retrieve the order details for a product.</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="endpoint">
+        <h3>Endpoint <code>api/productVendors</code></h3>
+        <table>
+            <tr>
+                <td><b>GET</b></td>
+                <td><b><code>/api/productVendors</code></b></td>
+                <td>Retrieve all product vendors.</td>
+            </tr>
+        </table>
+    </div>
+
+
+
+</body>
+</html>

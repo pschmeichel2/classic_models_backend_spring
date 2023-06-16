@@ -7,6 +7,7 @@ import org.springframework.data.annotation.ReadOnlyProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @NoArgsConstructor
@@ -15,8 +16,10 @@ import lombok.NoArgsConstructor;
 public class Employee {
     @Id
     @Getter
+    @Setter
     private Long employeeNumber; // int(11) NOT NULL,
     @Getter
+    @Setter
     private String lastName; // varchar(50) NOT NULL,
     @Getter
     private String firstName; // varchar(50) NOT NULL,

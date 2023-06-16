@@ -1,12 +1,12 @@
 package com.example.classicmodels;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.*;
-import org.springframework.beans.factory.annotation.*;
-import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import org.springframework.boot.test.autoconfigure.web.servlet.*;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -17,7 +17,7 @@ class ClassicModelsTests {
 	private String myProperty;
 
 	@Test
-	void dataSource() {
+	void propertyTest() {
 		assertThat(myProperty).isEqualTo("huhu");
 		System.out.println(myProperty);
 	}

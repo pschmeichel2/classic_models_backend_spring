@@ -7,6 +7,7 @@ import org.springframework.data.annotation.ReadOnlyProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @NoArgsConstructor
@@ -15,6 +16,7 @@ import lombok.NoArgsConstructor;
 public class Customer {
     @Id
     @Getter
+    @Setter
     private Long customerNumber; // int(11) NOT NULL,
     @Getter
     private String customerName; // varchar(50) NOT NULL,
@@ -35,8 +37,10 @@ public class Customer {
     @Getter
     private String postalCode; // varchar(15) DEFAULT NULL,
     @Getter
+    @Setter
     private String country; // varchar(50) NOT NULL,
     @Getter
+    @Setter
     private Long salesRepEmployeeNumber; // int(11) DEFAULT NULL,
     @Getter
     private Float creditLimit; // decimal(10,2) DEFAULT NULL,
