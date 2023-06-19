@@ -29,7 +29,7 @@ import com.example.classicmodels.repository.EmployeeRepository;
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-@TestMethodOrder(MethodOrderer.MethodName.class)
+//@TestMethodOrder(MethodOrderer.MethodName.class)
 public class CustomerTests {
     @Autowired
     private CustomerController customerController;
@@ -53,6 +53,8 @@ public class CustomerTests {
         final Long customerNumber1 = 1225L;
         final String customerName1 = "customer Name 1";
 
+        customerRepository.deleteAll();
+        
         Customer customer = new Customer();
         customer.setCustomerNumber(customerNumber1);
         customer.setCustomerName(customerName1);
@@ -69,6 +71,9 @@ public class CustomerTests {
     @Test
     void findByIdTest() {
         final Long customerNumber1 = 1225L;
+        
+        customerRepository.deleteAll();        
+
         Customer customer = new Customer();
         customer.setCustomerNumber(customerNumber1);
         Customer savedCustomer = customerRepository.save(customer);
@@ -85,6 +90,8 @@ public class CustomerTests {
         final Long employeeNumber1 = 1237L;
         final Long employeeNumber2 = 1238L;
 
+        customerRepository.deleteAll();
+        
         Customer customer = new Customer();
         customer.setCustomerNumber(customerNumber1);
         customer.setSalesRepEmployeeNumber(employeeNumber1);
@@ -109,6 +116,8 @@ public class CustomerTests {
         final String employeeName1 = "Employee1";
         final String employeeName2 = "Employee2";
 
+        employeeRepository.deleteAll();
+
         Employee employee = new Employee();
         employee.setEmployeeNumber(employeeNumber1);
         employee.setLastName(employeeName1);
@@ -119,6 +128,8 @@ public class CustomerTests {
         employee.setLastName(employeeName2);
         employeeRepository.save(employee);
 
+        customerRepository.deleteAll();
+        
         Customer customer = new Customer();
         customer.setCustomerNumber(customerNumber1);
         customer.setSalesRepEmployeeNumber(employeeNumber1);
