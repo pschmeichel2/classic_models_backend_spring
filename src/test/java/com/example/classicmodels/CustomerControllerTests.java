@@ -25,7 +25,6 @@ import com.example.classicmodels.repository.CustomerRepository;
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class CustomerControllerTests {
     @Autowired
 	private CustomerController customerController;
@@ -36,16 +35,8 @@ public class CustomerControllerTests {
 	@Autowired
     private MockMvc mockMvc;
 
-	final Long customerNumber1 = 1225L;
-	final String customerName1 = "customer Name 1";
-
-    @BeforeAll
-    public void init() {        
-        Customer customer = new Customer();
-        customer.setCustomerNumber(customerNumber1);
-		customer.setCustomerName(customerName1);
-        customerRepository.save(customer);
-    }
+	final static Long customerNumber1 = 1225L;
+	final static String customerName1 = "customer Name 1";
 
     @Test
 	public void contextLoads() throws Exception {
@@ -53,7 +44,12 @@ public class CustomerControllerTests {
 	}
 
 	 @Test
-    public void testGetEndpoint() throws Exception {
+    public void testGetSingleCustomerEndpoint() throws Exception {
+        Customer customer = new Customer();
+        customer.setCustomerNumber(customerNumber1);
+		customer.setCustomerName(customerName1);
+        customerRepository.save(customer);
+
         mockMvc.perform(get("/api/customers/"+Long.toString(customerNumber1))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
