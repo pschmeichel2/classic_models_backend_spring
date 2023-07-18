@@ -1,6 +1,7 @@
-package com.example.classicmodels.model;
+package com.example.classicmodels.model.query;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 import org.springframework.data.annotation.ReadOnlyProperty;
 
@@ -12,8 +13,8 @@ import lombok.Setter;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Employees")
-public class Employee {
+
+public class EmployeeQuery {
     @Id
     @Getter
     @Setter
@@ -33,4 +34,12 @@ public class Employee {
     private Long reportsTo; // int(11) DEFAULT NULL,
     @Getter
     private String jobTitle; // varchar(50) NOT NULL,
+
+    @Getter
+    @ReadOnlyProperty
+    private String city;
+    @Getter
+    @ReadOnlyProperty
+    private String reportsToName;
+
 }
