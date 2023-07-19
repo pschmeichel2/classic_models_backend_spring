@@ -116,7 +116,7 @@ public class EmployeeRepositoryCustomImpl implements EmployeeRepositoryCustom {
 
     @Transactional
     @Override
-    public void deleteById(Long employeeNumber) {
+    public void delete(Long employeeNumber) {
         Employee employee = entityManager.find(Employee.class, employeeNumber);
         entityManager.remove(employee);
     }

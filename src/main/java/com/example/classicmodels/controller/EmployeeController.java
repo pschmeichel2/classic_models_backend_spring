@@ -92,7 +92,7 @@ public class EmployeeController {
   @DeleteMapping("/employees/{employeeNumber}")
   public ResponseEntity<HttpStatus> deleteCustomer(@PathVariable("employeeNumber") long employeeNumber) {
     try {
-      employeeRepository.deleteById(employeeNumber);
+      employeeRepository.delete(employeeNumber);
     } catch (EmptyResultDataAccessException ex) {
       throw new ResourceNotFoundException(String.format("Employee with employeeNumber %s not found", employeeNumber));
     }

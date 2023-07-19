@@ -20,5 +20,5 @@ public interface EmployeeRepositoryCustom {
 
     EmployeeQuery update(Employee employee);
 
-    void deleteById(Long employeeNumber);
+    void delete(Long employeeNumber);
 }
